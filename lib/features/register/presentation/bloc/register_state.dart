@@ -9,6 +9,7 @@ class RegisterState with _$RegisterState {
     @Default('') String email,
     @Default('') String password,
     RegisterAlerts? registerAlert,
+    @Default('') String? message,
   }) = _Initial;
 }
 

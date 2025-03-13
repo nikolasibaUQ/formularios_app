@@ -1,11 +1,12 @@
+import 'package:formularios_app/core/either/either.dart';
 import 'package:formularios_app/features/register/domain/entities/user_data.dart';
 
 abstract class RegisterRepository {
-  Future<dynamic> registerUser({
+  Future<Either<String, bool>> registerUser({
     required UserData userData,
   });
 
-  Future<dynamic> createAcount({
+  Future<Either<String, bool>> createAcount({
     required String email,
     required String password,
   });

@@ -17,9 +17,7 @@ class CustomPrimaryButton extends StatelessWidget {
       this.textStyle,
       this.hoverTextStyle,
       this.color,
-      this.hoverColor,
       this.borderColor,
-      this.hoverBorderColor,
       this.haveShadow = true,
       this.fontSizeText,
       this.isDisabled = false,
@@ -34,8 +32,7 @@ class CustomPrimaryButton extends StatelessWidget {
   final TextStyle? textStyle;
   final TextStyle? hoverTextStyle;
   final Color? color;
-  final Color? hoverColor;
-  final Color? hoverBorderColor;
+
   final Color? borderColor;
   final bool haveShadow;
   final double? fontSizeText;
@@ -59,10 +56,6 @@ class CustomPrimaryButton extends StatelessWidget {
                 (Set<WidgetState> states) {
               if (isDisabled) {
                 return MyColors.grayText;
-              }
-
-              if (states.contains(WidgetState.hovered)) {
-                return hoverColor ?? MyColors.blueGreen;
               } else {
                 return color ?? MyColors.blueGreen;
               }

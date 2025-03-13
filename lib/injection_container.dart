@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:formularios_app/features/login/data/datasource/remote/login_firebase.dart';
 import 'package:formularios_app/features/login/data/repositories/login_repository_impl.dart';
 import 'package:formularios_app/features/login/domain/repositories/login_repository.dart';
@@ -28,9 +29,9 @@ Future<void> init() async {
       () => LoginFirebase(firebaseAuth: sl()));
 
   sl.registerLazySingleton<RegisterFirebase>(
-      () => RegisterFirebase(firebaseAuth: sl()));
+      () => RegisterFirebase(firebaseAuth: sl(), firebaseDatabase: sl()));
 
   //dependencies
-
+  sl.registerLazySingleton<FirebaseDatabase>(() => FirebaseDatabase.instance);
   sl.registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
 }

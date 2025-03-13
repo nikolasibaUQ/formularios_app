@@ -38,21 +38,28 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     final response = await registerRepository.createAcount(
         email: state.email, password: state.password);
 
-    if (response != null) {
-      final register = await registerRepository.registerUser(
-          userData: UserData(
+    await response.when(left: (error) async {
+      emit(state.copyWith(registerAlert: RegisterAlerts.error, message: error));
+    }, right: (_) async {
+      final userData = UserData(
         name: state.name,
         lastName: state.lastName,
         birthDate: state.birthDate,
-      ));
-      if (register != null) {
-        emit(state.copyWith(registerAlert: RegisterAlerts.success));
-      } else {
-        emit(state.copyWith(registerAlert: RegisterAlerts.error));
-      }
-    } else {
-      emit(state.copyWith(registerAlert: RegisterAlerts.error));
-    }
+      );
+
+      final response =
+          await registerRepository.registerUser(userData: userData);
+
+      response.when(
+        left: (error) {
+          emit(state.copyWith(
+              registerAlert: RegisterAlerts.error, message: error));
+        },
+        right: (_) {
+          emit(state.copyWith(registerAlert: RegisterAlerts.success));
+        },
+      );
+    });
   }
 
   void _onNameChanged(_NameChanged event, Emitter<RegisterState> emit) {

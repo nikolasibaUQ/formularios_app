@@ -123,12 +123,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 TextStyles.dynamicTextStyle(
                   fontFamily: Fonts.montserratRegular,
                   color: MyColors.violetBlue,
-                  fontSize: widget.fontSizeText ??
-                      (isDesktop
-                          ? responsive.fpw(15)
-                          : responsive.isLandscape
-                              ? responsive.fp(15)
-                              : responsive.fp(16)),
+                  fontSize: widget.fontSizeText ?? responsive.fp(16),
                 ),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),

@@ -76,9 +76,7 @@ class CustomDialog {
                           title!,
                           textAlign: TextAlign.center,
                           style: TextStyles.dynamicTextStyle(
-                              fontSize: isDesktop
-                                  ? responsive.fpw(19)
-                                  : responsive.fp(19),
+                              fontSize: responsive.fp(19),
                               color: MyColors.violetBlue,
                               fontFamily: Fonts.mPLUSRounded1cExtraBold),
                         ),
@@ -93,9 +91,7 @@ class CustomDialog {
                             textAlign: TextAlign.center,
                             style: TextStyles.dynamicTextStyle(
                                 lineSpacing: 1.2,
-                                fontSize: isDesktop
-                                    ? responsive.fpw(16)
-                                    : responsive.fp(16),
+                                fontSize: responsive.fp(16),
                                 color: MyColors.violetBlue,
                                 fontFamily: Fonts.montserratRegular),
                           ),
