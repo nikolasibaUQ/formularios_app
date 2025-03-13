@@ -34,6 +34,11 @@ void main() {
     await tester.tap(closeBtn);
     await tester.pumpAndSettle();
 
+    await tester.ensureVisible(find.byKey(Key('registerBtn')));
+
+    await tester.tap(find.byKey(Key('registerBtn')));
+    await tester.pumpAndSettle();
+
     final emailField = find.byKey(const Key('emailTextField'));
     final passwordField = find.byKey(const Key('passwordTextField'));
 
@@ -65,6 +70,12 @@ void main() {
     await tester.pumpAndSettle(Durations.medium1);
 
     await tester.tap(closeBtn);
+    await tester.pumpAndSettle();
+
+    final registerBtn = find.byKey(const Key('registerBtn'));
+    await tester.ensureVisible(registerBtn);
+
+    await tester.tap(registerBtn);
     await tester.pumpAndSettle();
   });
 }

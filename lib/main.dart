@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formularios_app/features/home/presentation/bloc/home_bloc.dart';
 import 'package:formularios_app/features/login/presentation/bloc/login_bloc.dart';
 import 'package:formularios_app/features/register/presentation/bloc/register_bloc.dart';
 import 'package:formularios_app/firebase_options.dart';
@@ -18,7 +19,7 @@ void main() async {
     providers: [
       BlocProvider(create: (context) => di.sl<LoginBloc>()),
       BlocProvider(create: (context) => di.sl<RegisterBloc>()),
-      // BlocProvider(create: (context) => di.sl<>()),
+      BlocProvider(create: (context) => di.sl<HomeBloc>()),
     ],
     child: const MyApp(),
   ));

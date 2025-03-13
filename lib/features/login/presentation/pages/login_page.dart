@@ -138,21 +138,21 @@ class LoginPage extends StatelessWidget {
                                 },
                                 height: responsive.dp(5)),
                         SizedBox(height: responsive.hp(2)),
-                        InkWell(
+                        GestureDetector(
+                          key: const Key('registerBtn'),
                           onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) {
-                                return RegisterPage();
-                              }),
-                            );
+                            GoRouter.of(context)
+                                .pushNamed(RegisterPage.routeName);
                           },
-                          child: Text(
-                            '¿No tienes cuenta? Regístrate',
-                            style: TextStyles.dynamicTextStyle(
-                              fontFamily: Fonts.montserratMedium,
-                              isUnderLine: true,
-                              fontSize: responsive.fp(16),
-                              color: MyColors.violetBlue,
+                          child: SizedBox(
+                            child: Text(
+                              '¿No tienes cuenta? Regístrate',
+                              style: TextStyles.dynamicTextStyle(
+                                fontFamily: Fonts.montserratMedium,
+                                isUnderLine: true,
+                                fontSize: responsive.fp(16),
+                                color: MyColors.violetBlue,
+                              ),
                             ),
                           ),
                         ),

@@ -17,6 +17,7 @@ class RegisterFirebase {
     try {
       final db = firebaseDatabase.ref('users').child('user_${userData.name}');
       await db.set(userData.toJson());
+
       return Either.right(true);
     } on FirebaseAuthException catch (e) {
       return Either.left(e.message ?? 'Error al ejecutar el servicio');
@@ -26,12 +27,13 @@ class RegisterFirebase {
   Future<Either<String, bool>> createAcount(
       {required String email, required String password}) async {
     try {
-      await firebaseAuth.createUserWithEmailAndPassword(
+      final response = await firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-
-      return Either.right(true);
+      return response.user != null
+          ? Either.right(true)
+          : Either.left('Error al crear la cuenta');
     } on FirebaseAuthException catch (e) {
       return Either.left(e.message ?? 'Error al ejecutar el servicio');
     }

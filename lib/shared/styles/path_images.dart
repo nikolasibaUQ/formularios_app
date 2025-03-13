@@ -1,6 +1,6 @@
 /// The class "Paths" contains static variables for accessing image and icon paths.
 class Paths {
-  Paths();
+  Paths._();
 
   static final images = PathsImages();
   static final icons = PathsIcons();
