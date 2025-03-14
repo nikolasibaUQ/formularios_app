@@ -8,6 +8,7 @@ class CreateAddresState with _$CreateAddresState {
     @Default('') String postalCode,
     @Default('') String department,
     CreateAddresEventEnum? status,
+    String? message,
   }) = _Initial;
 }
 

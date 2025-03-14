@@ -50,9 +50,19 @@ void main() {
     await tester.pumpAndSettle();
 
     await tester.enterText(find.byKey(Key('addres_field')), '123123123');
+    await tester.enterText(find.byKey(Key('city_field')), '123');
+    await tester.enterText(find.byKey(Key('state_field')), '123');
+    await tester.enterText(find.byKey(Key('zip_code_field')), '123123');
+    await tester.pumpAndSettle();
+
+    //errores por numeros campos ciudades y departamentos
+    await tester.tap(createButton);
+    await tester.pumpAndSettle();
+    await tester.tap(closeButton);
+    await tester.pumpAndSettle();
+
     await tester.enterText(find.byKey(Key('city_field')), 'city');
     await tester.enterText(find.byKey(Key('state_field')), 'department');
-    await tester.enterText(find.byKey(Key('zip_code_field')), '123123');
     await tester.pumpAndSettle();
 
     when(homeRepository.getEmailUSer())

@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formularios_app/features/register/domain/entities/user_data.dart';
 import 'package:formularios_app/features/register/domain/repositories/register_repository.dart';
+import 'package:formularios_app/shared/utils/utils.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'register_bloc.freezed.dart';
@@ -29,6 +30,22 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         state.password.isEmpty ||
         state.birthDate.isEmpty) {
       emit(state.copyWith(registerAlert: RegisterAlerts.emptyFields));
+      return;
+    } else if (!Utils.validateDate(state.birthDate)) {
+      emit(state.copyWith(
+          registerAlert: RegisterAlerts.error,
+          message: 'Fecha inválida, '
+              'por favor ingrese la fecha en el formato dd/mm/yyyy o dd-mm-yyyy'));
+      return;
+    } else if (!Utils.validateEmail(state.email)) {
+      emit(state.copyWith(
+          registerAlert: RegisterAlerts.error, message: 'Correo inválido'));
+      return;
+    } else if (!Utils.validatePassword(state.password)) {
+      emit(state.copyWith(
+          registerAlert: RegisterAlerts.error,
+          message: 'La contraseña debe tener al menos 8 caracteres, '
+              'una letra mayúscula, un número y un caracter especial'));
       return;
     }
 

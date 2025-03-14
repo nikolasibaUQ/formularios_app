@@ -41,7 +41,8 @@ class CreateAddressPage extends StatelessWidget {
                     .add(CreateAddresEvent.clearAlert()),
                 context: context,
                 title: 'Error',
-                subtitle: 'Ha ocurrido un error al registrar la dirección',
+                subtitle: state.message ??
+                    'Ha ocurrido un error al registrar la dirección',
                 icon: Image.asset(Paths.images.error));
           } else if (state.status == CreateAddresEventEnum.emptyFields) {
             CustomDialog(

@@ -124,9 +124,8 @@ class RegisterPage extends StatelessWidget {
                                   .add(RegisterEvent.changeBirthDate(value));
                             },
                             hintText: 'Fecha de nacimiento',
-                            keyboardType: TextInputType.emailAddress,
                             prefixIcon: Icon(
-                              Icons.email_outlined,
+                              Icons.calendar_month_outlined,
                               size: responsive.dp(2),
                               color: MyColors.violetBlue,
                             ),

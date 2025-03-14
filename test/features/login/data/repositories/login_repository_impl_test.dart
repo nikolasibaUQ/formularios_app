@@ -43,6 +43,20 @@ void main() {
       expect(result, Either<String, bool>.left('Error')); //
     });
 
+    test('result when we have a exception ', () async {
+      // Arrange
+      when(firebaseMock.signInWithEmailAndPassword(
+        email: anyNamed('email'),
+        password: anyNamed('password'),
+      )).thenThrow(Exception('Error'));
+
+      // Act
+      final result = await datasource.login(email: '123', password: '123');
+
+      // Assert
+      expect(result, Either<String, bool>.left('Exception: Error'));
+    });
+
     test('should return true when user is not null', () async {
       // Arrange
       when(firebaseMock.signInWithEmailAndPassword(

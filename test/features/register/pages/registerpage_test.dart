@@ -50,6 +50,36 @@ void main() {
     await tester.tap(registerButton);
     await tester.pumpAndSettle();
 
+    //error with the date
+    await tester.tap(close);
+    await tester.pumpAndSettle();
+
+    await tester.enterText(find.byKey(Key('birthdayTextField')), '12-12-2021');
+    await tester.pumpAndSettle();
+
+    await tester.tap(registerButton);
+    await tester.pumpAndSettle();
+    //
+    //error with the email
+    await tester.tap(close);
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byKey(Key('emailTextField')), '123123@g.com');
+    await tester.pumpAndSettle();
+
+    await tester.tap(registerButton);
+    await tester.pumpAndSettle();
+
+    //error with the password
+
+    await tester.tap(close);
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byKey(Key('passwordTextField')), 'Nikolas1@');
+    await tester.pumpAndSettle();
+
+    await tester.tap(registerButton);
+    await tester.pumpAndSettle();
+
+    //error service
     await tester.tap(close);
     await tester.pumpAndSettle();
 

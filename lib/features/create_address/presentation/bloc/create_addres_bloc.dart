@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formularios_app/features/create_address/domain/repositories/create_address_repository.dart';
 import 'package:formularios_app/features/home/domain/entiites/address.dart';
 import 'package:formularios_app/features/home/domain/repositories/home_repository.dart';
+import 'package:formularios_app/shared/utils/utils.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'create_addres_bloc.freezed.dart';
@@ -15,7 +16,7 @@ class CreateAddresBloc extends Bloc<CreateAddresEvent, CreateAddresState> {
     on<_CreateAddres>(_onCreateAddres);
 
     on<_ClearAlert>((event, emit) {
-      emit(state.copyWith(status: null));
+      emit(state.copyWith(status: null, message: null));
     });
     on<_ChangeAddress>((event, emit) {
       emit(state.copyWith(address: event.address));
@@ -44,6 +45,12 @@ class CreateAddresBloc extends Bloc<CreateAddresEvent, CreateAddresState> {
         state.postalCode.isEmpty) {
       emit(state.copyWith(status: CreateAddresEventEnum.emptyFields));
       return;
+    } else if (!Utils.validateNoNumbers(state.city) ||
+        !Utils.validateNoNumbers(state.department)) {
+      emit(state.copyWith(
+          status: CreateAddresEventEnum.error,
+          message: 'La ciudad y el departamento no pueden contener números'));
+      return;
     }
 
     emit(state.copyWith(status: CreateAddresEventEnum.loading));
@@ -57,7 +64,7 @@ class CreateAddresBloc extends Bloc<CreateAddresEvent, CreateAddresState> {
         email: value,
         address: Address(
             address: state.address,
-            city: state.address,
+            city: state.city,
             state: state.department,
             zipCode: state.postalCode),
       );

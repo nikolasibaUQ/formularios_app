@@ -4,6 +4,7 @@ import 'package:formularios_app/features/create_address/presentation/pages/creat
 import 'package:formularios_app/features/home/presentation/bloc/home_bloc.dart';
 import 'package:formularios_app/features/home/presentation/widgets/direction_content.dart';
 import 'package:formularios_app/shared/colors/colors.dart';
+import 'package:formularios_app/shared/styles/path_images.dart';
 import 'package:formularios_app/shared/styles/text_styles.dart';
 import 'package:formularios_app/shared/utils/fonts_names.dart';
 import 'package:formularios_app/shared/utils/responsive.dart';
@@ -34,6 +35,7 @@ class HomePage extends StatelessWidget {
         } else if (state.alert == HomeStateAlerts.deleteAddress) {
           CustomDialog(
               context: context,
+              icon: Image.asset(Paths.images.success),
               title: 'Éxito',
               subtitle: 'Dirección eliminada correctamente',
               onClose: () {

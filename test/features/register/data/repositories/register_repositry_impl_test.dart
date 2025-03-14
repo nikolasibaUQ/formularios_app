@@ -29,7 +29,7 @@ final mockUser = MockUser(); //
 final DatabaseReference databaseReferenceMock = MockDatabaseReference();
 
 void main() {
-  group('Login Tests', () {
+  group('register Tests', () {
     setUp(() {
       ///
       when(userCredentialMock.user).thenReturn(null);
@@ -148,6 +148,7 @@ void main() {
         birthDate: '123123',
         email: 'email',
         password: 'password',
+        addresses: [],
       );
 
       final json = data.toJson();

@@ -21,7 +21,6 @@ class CreateAddressFirebase {
         return Either.left("Usuario no encontrado.");
       }
 
-      // 🔹 Extraer la data del usuario
       final rawData = response.snapshot.value as Map;
       final String userKey =
           rawData.keys.first; // Obtiene la llave única del usuario
