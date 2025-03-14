@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:formularios_app/core/either/either.dart';
 import 'package:formularios_app/features/login/data/datasource/remote/login_firebase.dart';
 import 'package:formularios_app/features/login/data/repositories/login_repository_impl.dart';
 import 'package:mockito/annotations.dart';
@@ -39,7 +40,7 @@ void main() {
       final result = await datasource.login(email: '123', password: '123');
 
       // Assert
-      expect(result, false); //
+      expect(result, Either<String, bool>.left('Error')); //
     });
 
     test('should return true when user is not null', () async {
@@ -57,7 +58,7 @@ void main() {
       final result = await datasource.login(email: '123', password: '123');
 
       // Assert
-      expect(result, true);
+      expect(result, Either<String, bool>.right(true));
     });
   });
 }

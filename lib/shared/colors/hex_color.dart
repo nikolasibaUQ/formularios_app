@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 /// The HexColor class converts a hexadecimal color code to an integer color value.
 class HexColor extends Color {
   /// The function `_getColorFromHex` converts a hexadecimal color code to an integer representation.
-  /// 
+  ///
   /// Args:
   ///   hexColor (String): A string representing a hexadecimal color value.
-  /// 
+  ///
   /// Returns:
   ///   The method is returning an integer value representing the color obtained from the given
   /// hexadecimal color code.

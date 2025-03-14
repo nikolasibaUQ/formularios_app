@@ -43,10 +43,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       password: state.password,
     );
 
-    if (response) {
-      emit(state.copyWith(loginState: LoginStateEnum.success));
-    } else {
+    response.when(left: (left) {
       emit(state.copyWith(loginState: LoginStateEnum.error));
-    }
+    }, right: (right) {
+      emit(state.copyWith(loginState: LoginStateEnum.success));
+    });
   }
 }

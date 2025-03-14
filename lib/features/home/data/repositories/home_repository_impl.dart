@@ -1,7 +1,7 @@
 import 'package:formularios_app/core/either/either.dart';
 import 'package:formularios_app/features/home/data/datasources/remote/home_firebase.dart';
-import 'package:formularios_app/features/home/domain/entiites/address.dart';
 import 'package:formularios_app/features/home/domain/repositories/home_repository.dart';
+import 'package:formularios_app/features/register/domain/entities/user_data.dart';
 
 class HomeRepositoryImpl implements HomeRepository {
   HomeRepositoryImpl({required this.firebaseApi});
@@ -9,8 +9,8 @@ class HomeRepositoryImpl implements HomeRepository {
   final HomeFirebase firebaseApi;
 
   @override
-  Future<Either<dynamic, List<Address>>> getAddreses({required String email}) {
-    return firebaseApi.getAddreses(email: email);
+  Future<Either<String, UserData>> getAddreses({required String email}) {
+    return firebaseApi.getAddresses(email: email);
   }
 
   @override
@@ -19,7 +19,8 @@ class HomeRepositoryImpl implements HomeRepository {
   }
 
   @override
-  Future<Either> registerAddress({required Address address}) {
-    return firebaseApi.registerAddress(address: address);
+  Future<Either<String, bool>> deleteAddress(
+      {required int index, required String email}) {
+    return firebaseApi.deleteAddress(index: index, email: email);
   }
 }

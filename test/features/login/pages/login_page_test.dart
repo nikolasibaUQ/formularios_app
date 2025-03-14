@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:formularios_app/core/either/either.dart';
 import 'package:formularios_app/features/login/domain/repositories/login_repository.dart';
 import 'package:formularios_app/features/login/presentation/bloc/login_bloc.dart';
 import 'package:formularios_app/features/login/presentation/pages/login_page.dart';
+import 'package:formularios_app/injection_container.dart' as di;
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
@@ -14,6 +16,10 @@ import 'login_page_test.mocks.dart';
 //
 final loginRepository = MockLoginRepository();
 void main() {
+  setUpAll(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await di.init();
+  });
   testWidgets('Should load with correct initial state',
       (WidgetTester tester) async {
     await tester.pumpWidget(makeTestableWidget(child: LoginPage()));
@@ -55,7 +61,7 @@ void main() {
     await tester.pumpAndSettle();
 
     when(loginRepository.login(email: '123123', password: '123123'))
-        .thenAnswer((_) async => false);
+        .thenAnswer((_) async => Either.left('Error'));
 
     await tester.tap(loginBtn);
     await tester.pumpAndSettle();
@@ -64,7 +70,7 @@ void main() {
     await tester.pumpAndSettle();
 
     when(loginRepository.login(email: '123123', password: '123123'))
-        .thenAnswer((_) async => true);
+        .thenAnswer((_) async => Either.right(true));
 
     await tester.tap(loginBtn);
     await tester.pumpAndSettle(Durations.medium1);

@@ -3,5 +3,7 @@ part of 'home_bloc.dart';
 @freezed
 class HomeEvent with _$HomeEvent {
   const factory HomeEvent.started() = _Started;
-  const factory HomeEvent.registerAddress() = _RegisterAddress;
+
+  const factory HomeEvent.deleteAddress({required int index}) = _DeleteAddress;
+  const factory HomeEvent.deleteAler() = _DeleteAlert;
 }

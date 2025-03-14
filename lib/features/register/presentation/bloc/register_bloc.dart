@@ -45,6 +45,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         name: state.name,
         lastName: state.lastName,
         birthDate: state.birthDate,
+        email: state.email,
+        password: state.password,
       );
 
       final response =

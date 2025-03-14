@@ -3,6 +3,13 @@ part of 'home_bloc.dart';
 @freezed
 class HomeState with _$HomeState {
   const factory HomeState.initial({
-    @Default([]) List<Address> addresses,
+    @Default(null) UserData? userData,
+    HomeStateAlerts? alert,
   }) = _Initial;
+}
+
+enum HomeStateAlerts {
+  deleteAddress,
+  error,
+  errorGetAddress,
 }

@@ -1,5 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:formularios_app/features/create_address/data/datasource/remote/create_address_firebase.dart';
+import 'package:formularios_app/features/create_address/data/repositories/create_address_repository_impl.dart';
+import 'package:formularios_app/features/create_address/domain/repositories/create_address_repository.dart';
+import 'package:formularios_app/features/create_address/presentation/bloc/create_addres_bloc.dart';
 import 'package:formularios_app/features/home/data/datasources/remote/home_firebase.dart';
 import 'package:formularios_app/features/home/data/repositories/home_repository_impl.dart';
 import 'package:formularios_app/features/home/domain/repositories/home_repository.dart';
@@ -21,6 +25,8 @@ Future<void> init() async {
   sl.registerFactory(() => LoginBloc(loginRepository: sl()));
   sl.registerFactory(() => RegisterBloc(registerRepository: sl()));
   sl.registerFactory(() => HomeBloc(repository: sl()));
+  sl.registerFactory(() =>
+      CreateAddresBloc(createAddressRepository: sl(), homeRepository: sl()));
 
   //repositories
   sl.registerLazySingleton<LoginRepository>(
@@ -32,6 +38,9 @@ Future<void> init() async {
   sl.registerLazySingleton<HomeRepository>(
       () => HomeRepositoryImpl(firebaseApi: sl()));
 
+  sl.registerLazySingleton<CreateAddressRepository>(
+      () => CreateAddressRepositoryImpl(firebaseApi: sl()));
+
   //datasources
   sl.registerLazySingleton<LoginFirebase>(
       () => LoginFirebase(firebaseAuth: sl()));
@@ -41,6 +50,9 @@ Future<void> init() async {
 
   sl.registerLazySingleton<HomeFirebase>(
       () => HomeFirebase(firebaseAuth: sl(), firebaseDatabase: sl()));
+
+  sl.registerLazySingleton<CreateAddressFirebase>(
+      () => CreateAddressFirebase(firebaseDatabase: sl()));
   //dependencies
   sl.registerLazySingleton<FirebaseDatabase>(() => FirebaseDatabase.instance);
   sl.registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);

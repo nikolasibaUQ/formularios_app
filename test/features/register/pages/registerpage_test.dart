@@ -26,16 +26,8 @@ void main() {
     final registerButton = find.byKey(Key('register_button'));
     expect(registerButton, findsOneWidget);
 
-    // Verifica si el botón no está visible y fuerza el desplazamiento si es necesario
-    if (!tester.any(registerButton.hitTestable())) {
-      await tester.dragUntilVisible(
-        registerButton, // Widget que queremos hacer visible
-        find.byType(Scrollable).first, // Scrollable en el que se encuentra
-        const Offset(0, 200), // Dirección y cantidad de desplazamiento
-      );
-    }
-
-    await tester.tap(registerButton, warnIfMissed: false);
+    await tester.ensureVisible(registerButton);
+    await tester.tap(registerButton);
     await tester.pumpAndSettle();
 
     final close = find.byKey(Key('alert_close_button'));
@@ -55,20 +47,21 @@ void main() {
     await tester.enterText(find.byKey(Key('birthdayTextField')), '123123');
     await tester.pumpAndSettle();
 
-    await tester.tap(registerButton, warnIfMissed: false);
+    await tester.tap(registerButton);
     await tester.pumpAndSettle();
 
     await tester.tap(close);
     await tester.pumpAndSettle();
 
     when(registerRepository.createAcount(
-            email: anyNamed('email'), password: anyNamed('password')))
-        .thenAnswer((_) async => Either.right(true));
+      email: anyNamed('email'),
+      password: anyNamed('password'),
+    )).thenAnswer((_) async => Either.right(true));
 
     when(registerRepository.registerUser(userData: anyNamed('userData')))
         .thenAnswer((_) async => Either.left('error con los datos'));
 
-    await tester.tap(registerButton, warnIfMissed: false);
+    await tester.tap(registerButton);
 
     await tester.pumpAndSettle();
 
@@ -78,7 +71,7 @@ void main() {
     when(registerRepository.registerUser(userData: anyNamed('userData')))
         .thenAnswer((_) async => Either.right(true));
 
-    await tester.tap(registerButton, warnIfMissed: false);
+    await tester.tap(registerButton);
     await tester.pumpAndSettle();
 
     await tester.tap(close);

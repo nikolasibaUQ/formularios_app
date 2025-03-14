@@ -58,7 +58,7 @@ class RegisterPage extends StatelessWidget {
       child: BlocBuilder<RegisterBloc, RegisterState>(
         builder: (context, state) {
           return BackGround(
-            canBack: false,
+            canBack: true,
             child: Positioned(
               top: responsive.hp(28),
               left: responsive.wp(7),
@@ -164,7 +164,7 @@ class RegisterPage extends StatelessWidget {
                               ? CircularProgressIndicator()
                               : CustomPrimaryButton(
                                   key: const Key('register_button'),
-                                  text: 'Ingresar',
+                                  text: 'Registrarse',
                                   onPressed: () {
                                     FocusScope.of(context).unfocus();
                                     context

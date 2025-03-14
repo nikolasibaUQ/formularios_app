@@ -3,7 +3,6 @@ class Paths {
   Paths._();
 
   static final images = PathsImages();
-  static final icons = PathsIcons();
 }
 
 /// The class PathsImages provides the paths for different images used in the application.
@@ -16,8 +15,3 @@ class PathsImages {
 }
 
 /// The class PathsIcons provides the paths for different icons used in the application
-class PathsIcons {
-  PathsIcons();
-
-  // final worldPideky = 'lib/shared/assets/icons/mundo_pideky.png';
-}

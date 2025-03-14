@@ -98,6 +98,8 @@ void main() {
         name: 'name',
         lastName: 'lastName',
         birthDate: '123123',
+        email: 'email',
+        password: 'password',
       );
 
       when(firebaseDatabaseMock.ref('users')).thenReturn(databaseReferenceMock);
@@ -119,6 +121,8 @@ void main() {
         name: 'name',
         lastName: 'lastName',
         birthDate: '123123',
+        email: 'email',
+        password: 'password',
       );
 
       when(firebaseDatabaseMock.ref('users')).thenReturn(databaseReferenceMock);
@@ -142,6 +146,8 @@ void main() {
         name: 'name',
         lastName: 'lastName',
         birthDate: '123123',
+        email: 'email',
+        password: 'password',
       );
 
       final json = data.toJson();

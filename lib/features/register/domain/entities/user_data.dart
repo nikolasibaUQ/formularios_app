@@ -1,3 +1,4 @@
+import 'package:formularios_app/features/home/domain/entiites/address.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_data.freezed.dart';
@@ -9,6 +10,9 @@ abstract class UserData with _$UserData {
     required String name,
     required String lastName,
     required String birthDate,
+    required String email,
+    required String password,
+    List<Address>? addresses,
   }) = _UserData;
 
   factory UserData.fromJson(Map<String, dynamic> json) =>
